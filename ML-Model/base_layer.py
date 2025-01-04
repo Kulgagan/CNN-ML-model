@@ -1,4 +1,4 @@
-class layer:
+class Layer:    #acts as a template for the other layers to follow
     def __init__(self):
         self.input = None   #placeholder for input data (for other layers)
         self.output = None  #placeholder for output data (for other layers)
