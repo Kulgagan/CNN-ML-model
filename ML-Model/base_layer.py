@@ -1,4 +1,4 @@
-class Layer:
+class layer:
     def __init__(self):
         self.input = None   #placeholder for input data (for other layers)
         self.output = None  #placeholder for output data (for other layers)
@@ -16,3 +16,4 @@ class Layer:
         this method should be overridden by child classes.
         '''
         raise NotImplementedError("Implement backward method in this class")
+    
