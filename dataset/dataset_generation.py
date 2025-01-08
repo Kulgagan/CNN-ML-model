@@ -25,3 +25,6 @@ import matplotlib.pyplot as plt
 plt.imshow(X[2], cmap='gray')
 plt.title("square")
 plt.show()
+
+
+# look on kaggle for better shape datasets
