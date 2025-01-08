@@ -28,7 +28,7 @@ def generate_shape(shape_type, image_size = 128):
     
 def create_dataset(sum_samples_per_class=500, image_size=128):
     shape_types = ["circle","square","triangle"]
-    images =[]
+    images = []
     labels = []
     
     for label, shape_type in enumerate(shape_types):
@@ -36,3 +36,14 @@ def create_dataset(sum_samples_per_class=500, image_size=128):
             image = generate_shape(shape_type, image_size)
             images.append(image)
             labels.append(label) 
+    return np.array(images), np.array(labels)
+
+def split_data(images, labels, test_size=0.2, val_size=0.1):
+    X_train, X_temp, y_train, y_temp = train_test_split(images, labels, test_size=test_size + val_size, random_state=42)
+    
+    val_fraction = val_size / (test_size + val_size)
+
+    X_val, X_test, y_val, y_test = train_test_split(X_temp, y_temp, test_size=val_fraction, random_state=42)
+
+    return X_train, y_train, X_val, y_val, X_test, y_test
+
