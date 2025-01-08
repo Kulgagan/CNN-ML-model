@@ -6,3 +6,8 @@ class Tanh(Activation):
         tanh = lambda x: np.tanh(x) #the hyperbolic tan function
         tanh_prime = lambda x: 1 - np.tanh(x) ** 2  #the derivative of the hyperbolic tan function
         super().__init__(tanh, tanh_prime)
+
+class ReLU(Activation):
+    '''
+    implement
+    '''
