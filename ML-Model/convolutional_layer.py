@@ -22,7 +22,7 @@ class Convolutional(Layer):
         return self.output
     
     def backwards(self, output_gradient, learning_rate):
-        kernels_gradient = np.zeros(self.kernals_shape) 
+        kernels_gradient = np.zeros(self.kernels_shape) 
         input_gradient = np.zeros(self.input_shape)
 
         for i in range(self.depth):
