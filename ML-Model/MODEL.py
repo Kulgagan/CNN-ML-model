@@ -26,6 +26,7 @@ def generate_shape(shape_type, image_size = 128):
     else: 
         raise ValueError("Invalid shape type. kys")
     
+
 def create_dataset(sum_samples_per_class=500, image_size=128):
     shape_types = ["circle","square","triangle"]
     images = []
@@ -37,6 +38,7 @@ def create_dataset(sum_samples_per_class=500, image_size=128):
             images.append(image)
             labels.append(label) 
     return np.array(images), np.array(labels)
+
 
 def split_data(images, labels, test_size=0.2, val_size=0.1):
     X_train, X_temp, y_train, y_temp = train_test_split(images, labels, test_size=test_size + val_size, random_state=42)
