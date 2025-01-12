@@ -1,10 +1,14 @@
 import numpy as np
 import cv2
 import os
-from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+
 
 def generate_shape(shape_type, image_size=128):
+    """
+    Explanation
+    """
     image = np.zeros((image_size, image_size, 3), dtype=np.uint8) 
     color = (255, 255, 255) 
     thickness = -1
@@ -30,6 +34,9 @@ def generate_shape(shape_type, image_size=128):
     return image
 
 def create_dataset(num_samples_per_class=500, image_size=128):
+    """
+    Explanation
+    """
     shape_types = ["circle", "square", "triangle"]
     images = []
     labels = []
@@ -41,13 +48,21 @@ def create_dataset(num_samples_per_class=500, image_size=128):
             labels.append(label) 
     return np.array(images), np.array(labels)
 
+#go over everything past this point
 def split_data(images, labels, test_size=0.2, val_size=0.1):
+    """
+    Explanation
+    """
     X_train, X_temp, y_train, y_temp = train_test_split(images, labels, test_size=test_size + val_size, random_state=42)
     val_fraction = val_size / (test_size + val_size)
     X_val, X_test, y_val, y_test = train_test_split(X_temp, y_temp, test_size=val_fraction, random_state=42)
     return X_train, y_train, X_val, y_val, X_test, y_test
 
+
 def save_dataset(X, y, directory):
+    """
+    Explanation
+    """
     if not os.path.exists(directory):
         os.makedirs(directory)
     for i, (image, label) in enumerate(zip(X, y)):
@@ -59,6 +74,9 @@ def save_dataset(X, y, directory):
 
 
 def visualize_images(images, labels, num_images=5):
+    """
+    Explanation
+    """
     shape_types = ['circle', 'square', 'triangle']
     indices = np.random.choice(len(images), num_images, replace=False)
     for i, idx in enumerate(indices):

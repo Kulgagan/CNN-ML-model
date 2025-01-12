@@ -1,4 +1,5 @@
 from activation_layer import Activation
+from base_layer import Layer
 import numpy as np
 
 class Tanh(Activation):
@@ -11,3 +12,9 @@ class ReLU(Activation):
     '''
     implement
     '''
+def relu(x):
+    return np.where(0, x)
+def relu_prime(x):
+    return np.where(x > 0, 1, 0) 
+
+relu_activation = Activation(activation=relu, activation_prime=relu_prime) 
