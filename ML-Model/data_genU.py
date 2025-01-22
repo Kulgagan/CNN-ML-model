@@ -16,4 +16,6 @@ def generate_shape(shape_type, image_size = 128):
 
     if shape_type == "circle":
         center = (np.random.randint(image_size - 20, image_size - 20), np.random.randint(image_size - 20, image_size - 20))   #(?,?). 2 random values as (x,y) for a random center point between 20 and 20 minus image size
+        radius = np.random.randint(10,30)
+        cv2.circle(image, center, radius, color, thickness)
 
