@@ -22,4 +22,11 @@ def generate_shape(shape_type, image_size = 128):
         start_point = (np.random.randint(10, image_size - 40), np.random.randint(10, image_size - 40))  #-40 as we dont want it going off the edge
         end_point = (start_point[0] + np.random.randint(10, 40), start_point[1] + np.random.randint(10, 40))    #adds random(10-40) to start_points([0], [1])
         cv2.rectangle(image, start_point, end_point, color, thickness)
-
+    elif shape_type == "triangle": 
+        Tpoint = image_size - 10
+        points = np.array([
+            [np.random.randint(10, Tpoint), np.random.randint(10, Tpoint)]  #generates 3(x,y) points for cv2 traingle func to plot a triangle 
+            [np.random.randint(10, Tpoint), np.random.randint(10, Tpoint)]
+            [np.random.randint(10, Tpoint), np.random.randint(10, Tpoint)]
+        ])
+        cv2.drawContours(image, points, 0, color, thickness)    #points should be an array so it shouldnt throw an error
