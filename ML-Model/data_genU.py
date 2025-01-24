@@ -15,7 +15,11 @@ def generate_shape(shape_type, image_size = 128):
     thickness = -1 
 
     if shape_type == "circle":
-        center = (np.random.randint(image_size - 20, image_size - 20), np.random.randint(image_size - 20, image_size - 20))   #(?,?). 2 random values as (x,y) for a random center point between 20 and 20 minus image size
-        radius = np.random.randint(10,30)
+        center = (np.random.randint(20, image_size - 20), np.random.randint(20, image_size - 20))   #(?,?). 2 random values as (x,y) for a random center point between 20 and 20 minus image size so its not too close to the edges
+        radius = np.random.randint(10,30)   #random between 10-30
         cv2.circle(image, center, radius, color, thickness)
+    elif shape_type == "square": 
+        start_point = (np.random.randint(10, image_size - 40), np.random.randint(10, image_size - 40))  #-40 as we dont want it going off the edge
+        end_point = (start_point[0] + np.random.randint(10, 40), start_point[1] + np.random.randint(10, 40))    #adds random(10-40) to start_points([0], [1])
+        cv2.rectangle(image, start_point, end_point, color, thickness)
 
