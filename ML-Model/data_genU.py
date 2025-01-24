@@ -35,4 +35,21 @@ def generate_shape(shape_type, image_size = 128):
         raise ValueError("Invalid shape type gang")
     
     return image
- 
+
+def create_dataset(num_samples_per_class=500, image_size=128):
+    """
+    1. outer loop = goes through the shape type list (labels = 0,1,2)
+    2. iterates 500 times (amount of photos for every shape) 
+    3. image = shape type and image size to list
+    4. append image info and label to list
+    """
+    shape_types = ["circle", "square", "triangle"] 
+    images = []
+    labels = []
+
+    for label, shape_type in enumerate(shape_types):
+        for _ in range(num_samples_per_class): 
+            image = generate_shape(shape_type, image_size)
+            images.append(image) 
+            labels.append(label) 
+    return np.array(images), np.array(labels)
