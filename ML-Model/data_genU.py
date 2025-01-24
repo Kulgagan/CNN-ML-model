@@ -9,6 +9,7 @@ def generate_shape(shape_type, image_size = 128):
     1. takes in the shape type and auto sets the image size to be 128 to keep things consistent
     2. we create a black image(all zeros) with 3 color channels. 8 bit unsigned int so values range from 0-255. make image white. fill the shape with color(thickness=-1)
     3. define shape types using open cv
+    4. raise error if shape conditions not met 
     """
     image = np.zeros((image_size, image_size, 3), dtype = np.uint8)
     color = (255, 255, 255) 
@@ -30,3 +31,8 @@ def generate_shape(shape_type, image_size = 128):
             [np.random.randint(10, Tpoint), np.random.randint(10, Tpoint)]
         ])
         cv2.drawContours(image, points, 0, color, thickness)    #points should be an array so it shouldnt throw an error
+    else:
+        raise ValueError("Invalid shape type gang")
+    
+    return image
+ 
