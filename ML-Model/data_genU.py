@@ -26,11 +26,11 @@ def generate_shape(shape_type, image_size = 128):
     elif shape_type == "triangle": 
         Tpoint = image_size - 10
         points = np.array([
-            [np.random.randint(10, Tpoint), np.random.randint(10, Tpoint)]  #generates 3(x,y) points for cv2 traingle func to plot a triangle 
-            [np.random.randint(10, Tpoint), np.random.randint(10, Tpoint)]
+            [np.random.randint(10, Tpoint), np.random.randint(10, Tpoint)],  #generates 3(x,y) points for cv2 traingle func to plot a triangle 
+            [np.random.randint(10, Tpoint), np.random.randint(10, Tpoint)],
             [np.random.randint(10, Tpoint), np.random.randint(10, Tpoint)]
         ])
-        cv2.drawContours(image, points, 0, color, thickness)    #points should be an array so it shouldnt throw an error
+        cv2.drawContours(image, [points], 0, color, thickness)    #points should be an array so it shouldnt throw an error
     else:
         raise ValueError("Invalid shape type gang, jus give up alr LMAOOOOOOO")
     
@@ -95,4 +95,25 @@ def save_dataset(X, y , directory):
         file_path = os.path.join(label_dir, f"{i}.png")
         cv2.imwrite(file_path, image) 
 
+def visualize_images(images, labels, num_images=5):
+    """
+    Explanation
+    """
+    shape_types = ['circle', 'square', 'triangle']
+    indices = np.random.choice(len(images), num_images, replace=False)
+    for i, idx in enumerate(indices):
+        plt.subplot(1, num_images, i + 1)
+        plt.imshow(cv2.cvtColor(images[idx], cv2.COLOR_BGR2RGB))
+        plt.title(shape_types[labels[idx]])
+        plt.axis('off')
+    plt.show()
 
+images, labels = create_dataset(num_samples_per_class=500)
+
+X_train, y_train, X_val, y_val, X_test, y_test = split_data(images, labels) 
+
+save_dataset(X_train, y_train, "data/train")
+save_dataset(X_val, y_val, "data/val")
+save_dataset(X_test, y_test, "data/test")
+
+visualize_images(images, labels) 
