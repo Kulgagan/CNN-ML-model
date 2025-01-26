@@ -78,4 +78,21 @@ def split_data(images, labels, test_size=0.2, val_size=0.1):
     )
     return X_train, y_train, X_val, y_val, X_test, y_test
 
+def save_dataset(X, y , directory):
+    """
+    1. if directory doesnt exist, we make it
+    2. Zip(X, y) pairs each image in X with its corresponding label in y. Enumerate provides an index(i) for each pair, which is used for naming the files
+    3. Create subdirectory inside directory for currnet label(label). name will correspind to label eg.(if label is 2 then subdirectory will be directory/2)
+    4. construct file path for image by combining label_dir with a file name f"{i}.png, where i is the images index
+    5. saves images using cv2.imwrite
+    """
+    if not os.path.exists(directory):
+        os.makedirs(directory) 
+    for i, (image,label) in enumerate(zip(X, y)):
+        label_dir = os.path.join(directory, str(label))
+        if not os.path.exists(label_dir): 
+            os.makedirs(label_dir) 
+        file_path = os.path.join(label_dir, f"{i}.png")
+        cv2.imwrite(file_path, image) 
+
 
