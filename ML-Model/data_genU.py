@@ -61,13 +61,14 @@ def split_data(images, labels, test_size=0.2, val_size=0.1):
     3. size of temp set = test_size + val_size, (this fraction of data is allocated to validation and testing)
     4. random_state = 42, (same random shuffle each time the function is called) 
     5. val fraction computes frac of the temporary set that should go to the validation set
-    6. 
+    6. return nessesary values
     """
     X_train, X_temp, y_train, y_temp = training(
         images, labels,
         test_size = test_size + val_size,
         random_state = 42
     )
+
     val_fraction = val_size / (test_size + val_size)
 
     X_val, X_test, y_val, y_test = training(
