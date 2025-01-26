@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 import os 
 import matplotlib.pyplot as plt
-from sklearn.model_selection import train_test_split as training
+from sklearn.model_selection import train_test_split as training    #takes in X, Y, test_size, random state 
 
 def generate_shape(shape_type, image_size = 128):
     """
@@ -32,7 +32,7 @@ def generate_shape(shape_type, image_size = 128):
         ])
         cv2.drawContours(image, points, 0, color, thickness)    #points should be an array so it shouldnt throw an error
     else:
-        raise ValueError("Invalid shape type gang")
+        raise ValueError("Invalid shape type gang, jus give up alr LMAOOOOOOO")
     
     return image
 
@@ -53,3 +53,28 @@ def create_dataset(num_samples_per_class=500, image_size=128):
             images.append(image) 
             labels.append(label) 
     return np.array(images), np.array(labels)
+
+def split_data(images, labels, test_size=0.2, val_size=0.1): 
+    """
+    1. split images and labels into two subsets
+    2. (X_train, y_train) = training set, (X_temp, y_temp) = temp set that will be split into validation and test sets
+    3. size of temp set = test_size + val_size, (this fraction of data is allocated to validation and testing)
+    4. random_state = 42, (same random shuffle each time the function is called) 
+    5. val fraction computes frac of the temporary set that should go to the validation set
+    6. 
+    """
+    X_train, X_temp, y_train, y_temp = training(
+        images, labels,
+        test_size = test_size + val_size,
+        random_state = 42
+    )
+    val_fraction = val_size / (test_size + val_size)
+
+    X_val, X_test, y_val, y_test = training(
+        X_temp, y_temp,
+        test_size=val_fraction, 
+        random_state=42
+    )
+    return X_train, y_train, X_val, y_val, X_test, y_test
+
+
