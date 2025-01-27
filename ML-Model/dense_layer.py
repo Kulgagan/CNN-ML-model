@@ -1,5 +1,8 @@
 import numpy as np
 from base_layer import Layer
+"""
+Explanation...
+"""
 
 class Dense(Layer):
     def __init__(self, input_size, output_size):   #initializing input and output neurons

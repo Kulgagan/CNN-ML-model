@@ -1,5 +1,7 @@
 import numpy as np
-
+"""
+Explanation...
+"""
 def mse(y_true, y_pred):    #implementing MSE function
     return np.mean(np.power(y_true - y_pred, 2))
 

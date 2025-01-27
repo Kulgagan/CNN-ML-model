@@ -97,7 +97,7 @@ def save_dataset(X, y , directory):
 
 def visualize_images(images, labels, num_images=5):
     """
-    Explanation
+    Explanation...
     """
     shape_types = ['circle', 'square', 'triangle']
     indices = np.random.choice(len(images), num_images, replace=False)

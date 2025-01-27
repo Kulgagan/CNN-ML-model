@@ -1,7 +1,9 @@
 from activation_layer import Activation
 from base_layer import Layer
 import numpy as np
-
+"""
+Explanation...
+"""
 class Tanh(Activation):
     def __init__(self):
         tanh = lambda x: np.tanh(x) #the hyperbolic tan function
