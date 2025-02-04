@@ -1,6 +1,7 @@
 class Layer:    #acts as a template for the other layers to follow
     """
-    Explanation...
+    Template base class for building neural network layers
+    forward/backward methods coded in own seperate layers
     """
     def __init__(self):
         self.input = None   #placeholder for input data (for other layers)
